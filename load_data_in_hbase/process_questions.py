@@ -8,7 +8,7 @@ from bs4 import BeautifulSoup
 import happybase
 from neo4j.v1 import GraphDatabase
 
-server = "hbase-docker"
+server = "localhost"
 table_name = "questions"
 
 
@@ -84,7 +84,7 @@ def batch_insert_graph(batch):
 
 
 spark = SparkSession.builder.master("local[*]").appName("CCA") \
-    .config("spark.executor.memory", "20gb") \
+    .config("spark.executor.memory", "10gb") \
     .getOrCreate()
 
 # questions_df = pd.read_csv("/home/ubuntu/cca_498_final_project/Questions.csv", encoding='latin1')
@@ -105,6 +105,6 @@ questions_df['Id'] = questions_df['Id'].astype(int)
 questions_df['OwnerUserId'] = questions_df['OwnerUserId'].astype(float)
 questions_df['Score'] = questions_df['Score'].astype(int)
 
-rdd.foreachPartition(batch_insert_graph)
+# rdd.foreachPartition(batch_insert_graph)
 
 spark.stop()
