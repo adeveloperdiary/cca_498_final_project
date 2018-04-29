@@ -18,19 +18,19 @@ def remove_html_tags(text):
         print(text)
 
 
-def remove_bad_record(line):
-    if len(line) == 6:
-        try:
-            val = int(line[0])
-            return True
-        except:
-            return False
-            print("Bad record")
-            print(line)
+# def remove_bad_record(line):
+#     if len(line) == 6:
+#         try:
+#             val = int(line[0])
+#             return True
+#         except:
+#             return False
+#             print("Bad record")
+#             print(line)
 
-    else:
-        print("Removed bad record")
-        return False
+#     else:
+#         print("Removed bad record")
+#         return False
 
 
 def bulk_insert_hbase(batch):
@@ -116,7 +116,6 @@ rdd = df.rdd.map(lambda line: (line[0], line[1], line[2], line[3], line[4], line
 
 rdd.foreachPartition(bulk_insert_hbase)
 
-
 answers_df['Id'] = answers_df['Id'].astype(int)
 answers_df['OwnerUserId'] = answers_df['OwnerUserId'].astype(float)
 answers_df['ParentId'] = answers_df['ParentId'].astype(int)
@@ -124,9 +123,7 @@ answers_df['Score'] = answers_df['Score'].astype(int)
 
 df2 = spark.createDataFrame(answers_df)
 
-
 print(df2.printSchema())
-
 
 df2.rdd.foreachPartition(batch_insert_graph)
 

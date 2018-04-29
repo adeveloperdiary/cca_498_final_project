@@ -20,17 +20,17 @@ def remove_html_tags(text):
     #     print(text)
 
 
-def remove_bad_record(line):
-    if len(line) == 6:
-        try:
-            val = int(line[0])
-            return True
-        except:
-            print(line)
-            return False
-    else:
-        print(line)
-        return False
+# def remove_bad_record(line):
+#     if len(line) == 6:
+#         try:
+#             val = int(line[0])
+#             return True
+#         except:
+#             print(line)
+#             return False
+#     else:
+#         print(line)
+#         return False
 
 
 def bulk_insert_hbase(batch):
