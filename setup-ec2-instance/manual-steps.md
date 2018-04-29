@@ -42,13 +42,13 @@ ssh -i "[aws-key-pair.pem]]" -N \
  Example
 
 ssh -i "aws-boinc-key.pem" -N \
--L 8080:ec2-54-91-80-45.compute-1.amazonaws.com:8080 \
--L 7474:ec2-54-91-80-45.compute-1.amazonaws.com:7474 \
--L 7687:ec2-54-91-80-45.compute-1.amazonaws.com:7687 \
--L 9200:ec2-54-91-80-45.compute-1.amazonaws.com:9200 \
--L 9090:ec2-54-91-80-45.compute-1.amazonaws.com:9090 \
--L 5000:ec2-54-91-80-45.compute-1.amazonaws.com:5000 \
- ubuntu@ec2-54-91-80-45.compute-1.amazonaws.com
+-L 8080:ec2-54-152-36-59.compute-1.amazonaws.com:8080 \
+-L 7474:ec2-54-152-36-59.compute-1.amazonaws.com:7474 \
+-L 7687:ec2-54-152-36-59.compute-1.amazonaws.com:7687 \
+-L 9200:ec2-54-152-36-59.compute-1.amazonaws.com:9200 \
+-L 9090:ec2-54-152-36-59.compute-1.amazonaws.com:9090 \
+-L 5000:ec2-54-152-36-59.compute-1.amazonaws.com:5000 \
+ ubuntu@ec2-54-152-36-59.compute-1.amazonaws.com
 
 ### Wait until you see Ambari is up and running on port 8080
 ### If you do it beforehand, it can cause issues with HDFS
@@ -72,7 +72,7 @@ hbase thrift start &
 
 ### Step 8 - Test that hbase is working by running the below code in python3 shell
 import happybase as hb
-con = hb.Connection()
+con = hb.Connection('hbase-docker', 9090)
 cf = {
     'raw': dict(),
     'mod': dict()
