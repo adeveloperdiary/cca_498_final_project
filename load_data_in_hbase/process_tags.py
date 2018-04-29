@@ -4,7 +4,7 @@ from pyspark.sql import SparkSession
 import happybase
 from neo4j.v1 import GraphDatabase
 
-server = "localhost"
+server = "hbase-docker"
 table_name = "questions"
 
 
@@ -90,7 +90,6 @@ spark = SparkSession.builder.master("local[*]").appName("CCA") \
 df = spark.read.format('csv').option('header', 'true').load('hdfs://localhost:8020/demo/data/CCA/Tags.csv')
 
 # tags_df = pd.read_csv("/home/ubuntu/cca_498_final_project/raw_data/local-dev/Tags.csv", encoding='latin1')
-
 
 # rdd = df.rdd.filter(lambda line: remove_bad_record(line=line))
 
