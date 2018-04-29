@@ -5,7 +5,7 @@ from bs4 import BeautifulSoup
 import happybase
 from neo4j.v1 import GraphDatabase
 
-server = "localhost"
+server = "hbase-docker"
 table_name = "answers"
 
 
