@@ -15,7 +15,7 @@ def remove_html_tags(text):
         return soup.getText()
     except:
         print("bs4 issue")
-        print(text)
+        # print(text)
 
 
 # def remove_bad_record(line):
